@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    background-color: #f6f6f6;
+    height: 100vh;
+}
+
+.left {
+    width: 41%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f6f6;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.forgot-password {
+    color: #ff5722;
+    text-align: left;
+    display: block;
+}
+
+.login-button {
+    background-color: #ff9800;
+    border-color: #ff9800;
+    width: 70%;
+}
+
+.right {
+    width: 59%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.info-section {
+    text-align: center;
+}
+
+.info-section h2 {
+    color: #ff9800;
+}
+
+.info-section p {
+    color: #ff9800;
+    /* font-weight: bold; */
+    font-size: 24px;
+}
+
+.illustration {
+    margin: 40px;
+    width: 60%;
+}
