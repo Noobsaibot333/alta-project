@@ -1,29 +1,34 @@
 // components/ChartSection.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, Typography } from 'antd';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
-
+import { getChartData } from './ChartSection.logic';
 const { Option } = Select;
-
-const data = [
-  { name: '01', value: 2000 },
-  { name: '13', value: 3200 },
-  { name: '19', value: 4221 },
-  { name: '31', value: 2700 },
-];
-
 const ChartSection: React.FC = () => {
+  const [data, setData] = useState<any>([]);
+  const [optionSelected, setOptionSelected] = useState("0");
+  const [headerChart, setHeaderChart] = useState('Tháng '+((new Date()).getMonth()+1) + '/' + (new Date()).getFullYear())
+  useEffect(()=>{
+      const token = localStorage.getItem('token')??'';
+      async function getData() {
+        let tempData = await getChartData(optionSelected);
+        console.log((new Date()).getMonth() -1);
+        console.log(tempData);
+        setData(tempData);
+      }
+      getData();
+  },[optionSelected])
   return (
     <div style={{ padding: '16px', width:'100%', backgroundColor: '#fff', borderRadius: '8px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
         <div>
           <Typography.Title level={5} style={{ margin: 0 }}>Bảng thống kê theo ngày</Typography.Title>
-          <Typography.Text type="secondary">Tháng 11/2021</Typography.Text>
+          <Typography.Text type="secondary">{headerChart}</Typography.Text>
         </div>
-        <Select defaultValue="Ngày" style={{ width: 120 }}>
-          <Option value="Ngày">Ngày</Option>
-          <Option value="Tuần">Tuần</Option>
-          <Option value="Tháng">Tháng</Option>
+        <Select defaultValue="Ngày" style={{ width: 120 }} onChange={(value)=>setOptionSelected(value)}>
+          <Option value="0">Ngày</Option>
+          <Option value="1">Tuần</Option>
+          <Option value="2">Tháng</Option>
         </Select>
       </div>
       <ResponsiveContainer width="100%" height={400}>

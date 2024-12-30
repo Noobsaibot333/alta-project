@@ -2,12 +2,18 @@
 import React from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import "./AddDeviceButton.css";
-
-const AddDeviceButton: React.FC = () => {
+type AddDeviceButtonProps = {
+  sendStatus: (status:boolean) => void;
+  headerText: string;
+}
+const AddDeviceButton = (props:AddDeviceButtonProps) => {
+  const handleClick = () => {
+    props.sendStatus(true);
+  }
   return (
     <div className="add-device-button">
-      <PlusOutlined className="icon" />
-      <p>Thêm thiết bị</p>
+      <PlusOutlined className="icon" onClick={handleClick} />
+      <p>{props.headerText}</p>
     </div>
   );
 };

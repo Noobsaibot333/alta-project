@@ -12,6 +12,7 @@
   }
   
   .user-info {
+    margin-left: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
